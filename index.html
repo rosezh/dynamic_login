@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link href="css/index.css">
+		<link rel="stylesheet" href="css/index.css" />
+	</head>
+	<style id="css">
+        
+        #box{
+        	position: absolute;
+        	top:-220px;
+        	right:28px;
+            width: 720px;
+            height: 720px;
+            margin:100px auto;
+        }
+        #box ul{
+            height:100%;
+            -border: 1px solid gold;
+            border-radius: 50%;
+            position: relative;
+            transform: rotate(67deg);
+        }
+        #box ul li{
+            position: absolute;
+            top:0;
+            left:50%;
+            width:6px;
+            height: 4px;
+            background: #379dc7;
+            transform-origin: center 330px;
+        }
+        
+
+    </style>
+	<body>
+		<section class="login" id="login">
+			<div class="pub">
+				<div class="pub_con">
+					<div class="fl animation">
+						<img src="img/index/login_car_03.png">
+						<div class="power"><span></span></div>
+						<div class="power power2"><span></span></div>
+						<div class="power power3"><span></span></div>
+						<ul class="dynamic"></ul>
+						
+						<div class="long_short">
+							<img class="img1" src="img/index/1_03.png">
+							<img class="img2" src="img/index/2_03.png">
+							<img class="img3" src="img/index/3_03.png">
+							<img class="img4" src="img/index/3_06.png">
+							<img class="img5" src="img/index/4_03.png">
+						</div>
+						<div class="canvas">
+							<canvas id="MyCanvas" width="400px" height="400px"></canvas>
+							<canvas id="MyCanvas2" width="400px" height="400px"></canvas>
+							<canvas id="MyCanvas3" width="400px" height="400px"></canvas>
+							<canvas id="MyCanvas4" width="400px" height="400px"></canvas>
+							<canvas id="MyCanvas5" width="400px" height="400px"></canvas>
+							<canvas id="MyCanvas6" width="400px" height="400px"></canvas>
+							<canvas id="MyCanvas7" width="400px" height="400px"></canvas>
+						</div>
+						
+						<div id="box">
+					        <ul id="ul">
+					        </ul>
+					    </div>
+					    <div class="lightning">
+					    	<canvas id="line1" width="200px" height="200px"></canvas>
+					    	<canvas id="line2" width="200px" height="200px"></canvas>
+					    	<canvas id="line3" width="200px" height="200px"></canvas>
+					    	<canvas id="line4" width="200px" height="200px"></canvas>
+					    	<canvas id="line5" width="200px" height="200px"></canvas>
+					    	<canvas id="line6" width="200px" height="200px"></canvas>
+					    	<canvas id="line7" width="200px" height="200px"></canvas>
+					    </div>
+					</div>
+					<div class="login_info fl">
+						<div><img src="img/index/login_logo_03.png"></div>
+						<p><img src="img/index/login_icon_03.png"><span>|</span><input type="text" placeholder="请输入用户名" /></p>
+						<p><img src="img/index/login_icon_06.png"><span>|</span><input type="text" placeholder="请输入用密码" /></p>
+						<div class="button"><a href="">登录</a></div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<footer class="footer">
+			© 版权所有 2012-2017 Powered by: 欧拉电动汽车
+		</footer>
+	</body>
+	<script>
+	var login=document.getElementById("login");
+    var x=0;
+    var timer=setInterval(moveBg,100);
+    function moveBg(){
+        login.style.backgroundPositionX=x+"px";
+        x=x-3;
+    }
+	
+		function createDynamicLi(){
+			var li=document.createElement("li");
+			var dynamic=document.querySelector(".dynamic");
+			var str="";
+			for(let i=0;i<35;i++){
+				str+='<li></li>';
+			}
+			dynamic.innerHTML=str
+		}
+		createDynamicLi();
+		
+		/*winWH("login");*/
+		function id(obj){
+			return document.getElementById(obj);
+		}
+		function winWH(obj){
+			var width=window.clientWidth +'px';
+			var height=window.innerHeight+'px';
+			id(obj).style.width=width;
+			id(obj).style.height=height;
+		}
+		
+		createLi();
+    	function createLi() {
+                var str = '';
+                var style = '';
+                for( var i=0;i<31;i++){
+                    str += '<li></li>';
+                    style += '#box ul li:nth-child('+(i+1)+'){transform: rotate('+i*1.5+'deg)}';
+                }
+                ul.innerHTML = str;
+                css.innerHTML += style;
+
+            }
+	    var liDoms=document.querySelectorAll("#box li")
+	   function random(){
+	   		for(var i=0;i<liDoms.length;i++){
+	   			liDoms[i].style.background="#379dc7";
+			   	var j=Math.ceil(Math.random()*i);
+			   	liDoms[j].style.background="#fff";
+			}
+	   }
+	   
+	   setInterval(function(){
+	   	random()
+	   },1000);
+	   function drawCircle(obj,circle,radian){
+			var canvas=document.getElementById(obj);
+			if(canvas.getContext){
+				var ctx=canvas.getContext("2d");
+				ctx.beginPath();
+				ctx.strokeStyle="#fff";
+				ctx.arc(circle.x,circle.y,circle.r,0,Math.PI/radian,false);
+				ctx.stroke();
+			}
+		}
+		drawCircle("MyCanvas",{x:100,y:100,r:90},3.4);
+		drawCircle("MyCanvas2",{x:100,y:100,r:90},6);
+		drawCircle("MyCanvas3",{x:100,y:100,r:90},7);
+		drawCircle("MyCanvas4",{x:100,y:100,r:90},10);
+		drawCircle("MyCanvas5",{x:100,y:100,r:90},10);
+		drawCircle("MyCanvas6",{x:100,y:100,r:90},9);
+		drawCircle("MyCanvas7",{x:100,y:100,r:90},15);
+		
+		function drawLightning(obj,x,y){
+			var canvas=document.getElementById(obj);
+			var ctx=canvas.getContext("2d");
+			ctx.beginPath();
+			ctx.moveTo(50,50);
+			ctx.lineTo(x,y);
+			ctx.lineWidth=3;
+			ctx.strokeStyle="#aeff82";
+			ctx.shadowBlur=20;
+			ctx.shadowColor="#fff"
+			ctx.stroke();
+		}
+		drawLightning("line1",76,0);
+		drawLightning("line2",70,80);
+		drawLightning("line3",22,50);
+		drawLightning("line4",22,50);
+		drawLightning("line5",145,0);
+		drawLightning("line6",110,0);
+		drawLightning("line7",30,50);
+	</script>
+</html>
